@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stem 18 - Mapanaliksik Schedule</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #e3f2fd, #90caf9);
+            color: #333;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .box {
+            width: 200px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, #2196f3, #64b5f6);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .box:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .schedule {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .schedule.active {
+            display: flex;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .meeting, .vacant {
+            margin: 10px 0;
+            padding: 15px 20px;
+            width: 340px;
+            border-radius: 10px;
+            font-size: 1rem;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .meeting {
+            background: #e3f2fd;
+            color: #1a237e;
+        }
+
+        .vacant {
+            background: #c8e6c9;
+            color: #256029;
+            font-weight: bold;
+        }
+
+        .meeting a {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        .meeting a:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            margin-top: 30px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(to right, #e53935, #ef5350);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body onload="setRandomBackground()">
+
+    <div class="container" id="home">
+        <h1>Select a Day</h1>
+        <div class="box-container">
+            <div class="box" onclick="showSchedule('monday')">Monday</div>
+            <div class="box" onclick="showSchedule('tuesday')">Tuesday</div>
+            <div class="box" onclick="showSchedule('wednesday')">Wednesday</div>
+            <div class="box" onclick="showSchedule('thursday')">Thursday</div>
+            <div class="box" onclick="showSchedule('friday')">Friday</div>
+        </div>
+    </div>
+
+    <!-- Monday Schedule -->
+    <div id="monday" class="schedule">
+        <h1>Monday's Schedule</h1>
+        <div class="meeting">10:15 AM - 11:00 AM: <a href="https://meet.google.com/jrr-nyun-zwt">Values Education 3</a></div>
+        <div class="meeting">11:00 AM - 11:45 AM: <a href="https://meet.google.com/fhi-tipw-bsa">Introduction to Philosophy of the Human Person</a></div>
+        <div class="meeting">11:45 AM - 12:30 PM: <a href="https://meet.google.com/vhm-ztqu-wiy">Entrepreneurship</a></div>
+        <div class="meeting">12:30 PM - 1:15 PM: <a href="https://meet.google.com/fna-vptg-mfm">Inquiries, Investigations, and Immersion</a></div>
+        <div class="meeting">1:15 PM - 2:00 PM: <a href="https://meet.google.com/jrr-nyun-zwt">General Physics 2</a></div>
+        <button class="back-button" onclick="goHome()">Back</button>
+    </div>
+
+    <!-- Tuesday Schedule -->
+    <div id="tuesday" class="schedule">
+        <h1>Tuesday's Schedule</h1>
+        <div class="meeting">10:15 AM - 11:00 AM: <a href="https://meet.google.com/ygn-tgvi-ngs">Physical Education and Health 4</a></div>
+        <div class="meeting">11:00 AM - 11:45 AM: <a href="https://meet.google.com/fhi-tipw-bsa">Introduction to Philosophy of the Human Person</a></div>
+        <div class="meeting">11:45 AM - 12:30 PM: <a href="https://meet.google.com/vhm-ztqu-wiy">Entrepreneurship</a></div>
+        <div class="meeting">12:30 PM - 1:15 PM: <a href="https://meet.google.com/wsd-ijud-urn">General Chemistry 2</a></div>
+        <div class="meeting">1:15 PM - 2:00 PM: <a href="https://meet.google.com/jrr-nyun-zwt">General Physics 2</a></div>
+        <button class="back-button" onclick="goHome()">Back</button>
+    </div>
+
+    <!-- Wednesday Schedule -->
+    <div id="wednesday" class="schedule">
+        <h1>Wednesday's Schedule</h1>
+        <div class="vacant">10:15 AM - 11:00 AM: IT'S VACANT TIME!</div>
+        <div class="meeting">11:00 AM - 11:45 AM: <a href="https://meet.google.com/wbi-uxgt-ydu">Media and Information Literacy</a></div>
+        <div class="meeting">11:45 AM - 12:30 PM: <a href="https://meet.google.com/vhm-ztqu-wiy">Entrepreneurship</a></div>
+        <div class="meeting">12:30 PM - 1:15 PM: <a href="https://meet.google.com/wsd-ijud-urn">General Chemistry 2</a></div>
+        <div class="meeting">1:15 PM - 2:00 PM: <a href="https://meet.google.com/hfq-ynum-riq">Research Capstone</a></div>
+        <button class="back-button" onclick="goHome()">Back</button>
+    </div>
+
+    <!-- Thursday Schedule -->
+    <div id="thursday" class="schedule">
+        <h1>Thursday's Schedule</h1>
+        <div class="vacant">10:15 AM - 11:00 AM: IT'S VACANT TIME!</div>
+        <div class="meeting">11:00 AM - 11:45 AM: <a href="https://meet.google.com/wbi-uxgt-ydu">Media and Information Literacy</a></div>
+        <div class="meeting">11:45 AM - 12:30 PM: <a href="https://meet.google.com/fna-vptg-mfm">Inquiries, Investigations, and Immersion</a></div>
+        <div class="meeting">12:30 PM - 1:15 PM: <a href="https://meet.google.com/wsd-ijud-urn">General Chemistry 2</a></div>
+        <div class="meeting">1:15 PM - 2:00 PM: <a href="https://meet.google.com/hfq-ynum-riq">Research Capstone</a></div>
+        <button class="back-button" onclick="goHome()">Back</button>
+    </div>
+
+    <!-- Friday Schedule -->
+    <div id="friday" class="schedule">
+        <h1>Friday's Schedule</h1>
+        <div class="meeting">10:15 AM - 11:00 AM: <a href="https://meet.google.com/fhi-tipw-bsa">Introduction to Philosophy of the Human Person</a></div>
+        <div class="meeting">11:00 AM - 11:45 AM: <a href="https://meet.google.com/wbi-uxgt-ydu">Media and Information Literacy</a></div>
+        <div class="meeting">11:45 AM - 12:30 PM: <a href="https://meet.google.com/fna-vptg-mfm">Inquiries, Investigations, and Immersion</a></div>
+        <div class="meeting">12:30 PM - 1:15 PM: <a href="https://meet.google.com/jrr-nyun-zwt">General Physics 2</a></div>
+        <div class="meeting">1:15 PM - 2:00 PM: <a href="https://meet.google.com/hfq-ynum-riq">Research Capstone</a></div>
+        <button class="back-button" onclick="goHome()">Back</button>
+    </div>
+
+    <script>
+        function showSchedule(day) {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById(day).classList.add('active');
+        }
+
+        function goHome() {
+            document.querySelectorAll('.schedule').forEach(schedule => {
+                schedule.classList.remove('active');
+            });
+            document.getElementById('home').style.display = 'flex';
+        }
+    </script>
+    <footer>
+    <p class="credits">
+        Designed and created by Steven Palco, your Class Beadle.
+        <span class="disclaimer"> (Disclaimer: This is for class use only. Do not share without permission)</span>
+    </p>
+</footer>
+
+<style>
+    .credits {
+        font-size: 0.8rem; 
+        color: gray; 
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .disclaimer {
+        display: none;
+        color: red; 
+        font-weight: bold;
+    }
+
+    .credits:hover .disclaimer {
+        display: inline; 
+    }
+</style>
+<script>
+    
+    const colorPalette = [
+        "#FFDEE9", "#B5FFFC", "#D5AAFF", "#FFB5E8", "#AFF8DB", 
+        "#85E3FF", "#B9FBC0", "#FFFFD1", "#FFABAB", "#FFC3A0"
+    ];
+
+    
+    function setRandomBackground() {
+        const randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+        document.body.style.background = randomColor;
+    }
+
+    
+    window.onload = setRandomBackground;
+</script>
+
+</body>
+</html>
